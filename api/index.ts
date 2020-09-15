@@ -39,11 +39,11 @@ app.delete("/resource/:id", async (req, res) => {
 
   if (!findResourceById(id)) {
     res.sendStatus(404);
+  } else {
+    await removeResourceById(id);
+
+    res.sendStatus(200);
   }
-
-  await removeResourceById(id);
-
-  res.sendStatus(200);
 });
 
 /**
