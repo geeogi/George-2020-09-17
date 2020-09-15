@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { PERMISSABLE_FILE_TYPES_MIME } from "./config/constants";
+import { createResourceFromFile, deleteResourceById, fetchResources, searchResources } from "./handlers/resource";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input
+        type="file"
+        accept={PERMISSABLE_FILE_TYPES_MIME.join(",")}
+        onChange={(e) => {
+          if (e.target.files) {
+            createResourceFromFile(e.target.files[0]);
+          }
+        }}
+      ></input>
+      <button onClick={fetchResources}>Fetch</button>
+      <button onClick={() => searchResources("red")}>Search</button>
+      <button onClick={() => deleteResourceById("aoi1-39e03-d0sjs-dos")}>Delete</button>
     </div>
   );
 }
