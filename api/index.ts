@@ -15,9 +15,10 @@ app.use((req, res, next) => {
 /**
  * Upload an individual document
  */
-app.post("/resource", upload.single("image"), (req, res) => {
+app.post("/resource", upload.single("file"), (req, res) => {
   console.log(req.file);
   console.log(req.body.name);
+  res.sendStatus(200);
 });
 
 /**
@@ -25,6 +26,7 @@ app.post("/resource", upload.single("image"), (req, res) => {
  */
 app.delete("/resource/:id", (req, res) => {
   console.log(req.params.id);
+  res.sendStatus(200);
 });
 
 /**
