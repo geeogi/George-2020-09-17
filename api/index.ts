@@ -17,7 +17,7 @@ app.use((req, res, next) => {
  */
 app.post("/resource", upload.single("image"), (req, res) => {
   console.log(req.file);
-  console.log(req.body);
+  console.log(req.body.name);
 });
 
 /**
