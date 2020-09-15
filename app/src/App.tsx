@@ -10,7 +10,7 @@ function App() {
         type="file"
         accept={PERMISSABLE_FILE_TYPES_MIME.join(",")}
         onChange={(e) => {
-          if (e.target.files) {
+          if (e.target.files && e.target.files.length === 1) {
             createResourceFromFile(e.target.files[0]);
           }
         }}
