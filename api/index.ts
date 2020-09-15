@@ -12,16 +12,34 @@ app.use((req, res, next) => {
   next();
 });
 
+/**
+ * Upload an individual document
+ */
 app.post("/resource", upload.single("image"), (req, res) => {
-  // req.file is the `image` file
   console.log(req.file);
-
-  // req.body will hold the text fields, if there were any
   console.log(req.body);
 });
 
+/**
+ * Delete a document
+ */
+app.delete("/resource/:id", (req, res) => {
+  console.log(req.params.id);
+});
+
+/**
+ * List all uploaded documents
+ */
 app.get("/resources", (req, res) => {
   res.send(["A", "B", "C"]);
+});
+
+/**
+ * Search documents by name using the API
+ */
+app.get("/resources/search", (req, res) => {
+  console.log(req.query.term);
+  res.send(["A", "B"]);
 });
 
 app.listen(port, () => {
