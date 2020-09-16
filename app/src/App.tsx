@@ -1,5 +1,8 @@
 import React from "react";
-import "./App.css";
+import { ControlsBar } from "./components/ControlsBar";
+import { ResourcePreview } from "./components/ResourcePreview";
+import { ResourcesContainer } from "./components/ResourcesContainer";
+import { ResourcesOverview } from "./components/ResourcesOverview";
 import { bytesToKilobytes, round } from "./core/util";
 import { Resource } from "./model/resource";
 
@@ -18,28 +21,14 @@ function App() {
   const totalSizeKb = round(bytesToKilobytes(totalSizeB));
 
   return (
-    <main className="container">
-      <div className="flex wrap-reverse space-between">
-        <input placeholder="Search documents..."></input>
-        <button>UPLOAD</button>
-      </div>
-      <div className="flex wrap-reverse space-between">
-        <h2>{numberOfDocuments} documents</h2>
-        <p>Total size: {totalSizeKb}kb</p>
-      </div>
-      <div className="flex wrap space-between">
+    <main>
+      <ControlsBar />
+      <ResourcesOverview numberOfDocuments={numberOfDocuments} totalSizeKb={totalSizeKb} />
+      <ResourcesContainer>
         {MOCK_RESOURCES.map((resource) => (
-          <div className="border my-8 document-width">
-            <div className="pa-16">
-              <h3>{resource.name}</h3>
-              <div className="flex space-between center">
-                <p>{round(bytesToKilobytes(resource.size))}kb</p>
-                <button>delete</button>
-              </div>
-            </div>
-          </div>
+          <ResourcePreview resource={resource} />
         ))}
-      </div>
+      </ResourcesContainer>
     </main>
   );
 }
