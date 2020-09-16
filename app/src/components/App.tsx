@@ -23,9 +23,12 @@ function App() {
         onSearch={setSearchTerm}
         onUpload={addResource}
       />
-      {resources ? (
+      {resources && (
         <>
-          <ResourcesOverview resourcesAreLoading={resourcesAreLoading} resources={resources} />
+          <ResourcesOverview
+            resourcesAreLoading={resourcesAreLoading}
+            resources={resources}
+          />
           <ResourcesContainer>
             {resources.map((resource) => (
               <ResourcePreview
@@ -36,10 +39,6 @@ function App() {
             ))}
           </ResourcesContainer>
         </>
-      ) : (
-        <div className="mt-16">
-          <Spinner />
-        </div>
       )}
     </main>
   );

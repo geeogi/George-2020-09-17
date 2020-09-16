@@ -38,7 +38,7 @@ export const ResourcesControls = (props: {
       <input
         type="text"
         placeholder="Search documents..."
-        value={searchTerm}
+        value={searchTerm || ""}
         onChange={(e) => onSearch(e.target.value)}
       ></input>
       <input

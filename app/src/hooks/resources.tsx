@@ -15,7 +15,10 @@ export const useResources = () => {
     setResourcesAreLoading(true);
     try {
       const newResources = await debouncedLoadResources(searchTerm);
+      console.log("resolved");
       setResources(newResources);
+    } catch (e) {
+      alert(e);
     } finally {
       setResourcesAreLoading(false);
     }
