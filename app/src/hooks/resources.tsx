@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createResourceFromFile, deleteResourceById, fetchResources, searchResources } from "../handlers/resource";
+import { createResourceFromFile, deleteResourceById, fetchResources, debouncedSearchResources } from "../handlers/resource";
 import { Resource } from "../model/resource";
 
 export const useResources = () => {
@@ -29,7 +29,7 @@ export const useResources = () => {
 
   useEffect(() => {
     if (searchTerm) {
-      searchResources(searchTerm).then(setResources);
+      debouncedSearchResources(searchTerm).then(setResources);
     } else {
       fetchResources().then(setResources);
     }

@@ -1,7 +1,7 @@
 # George - 2020-09-17
 
-
 ## Installation
+
 // All the instructions to run the application
 
 ### `yarn start`
@@ -27,24 +27,29 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-
 ## Security
+
 // List security concerns:
 // - that have been addressed
-// - that have *not* been addressed
-
+// - that have _not_ been addressed
 
 ## Improvements
+
 // What could be added to the app / API?
 
-
 ## Libraries
+
 // What external libraries have you used and why?
 
+### debounce-promise
+
+Used to debounce the search handler to prevent hammering the API and potentially showing results which are inconsistent with the search term.
 
 ## API
+
 // Any general observation about the API?
 // document each endpoint using the following template:
+
 ```
 
 
@@ -54,8 +59,9 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 // - what does it return?
 // - does it accept specific parameters?
 ```
+
 ---
 
-
 ## Other notes
+
 // Anything else you want to mention

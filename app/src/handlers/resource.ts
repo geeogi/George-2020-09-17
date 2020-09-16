@@ -1,6 +1,7 @@
 import { API_BASE_URL } from "../config/constants";
 import { validateFileForResource } from "../core/validate";
 import { Resource } from "../model/resource";
+import debounce from "debounce-promise";
 
 export const fetchResources = async (): Promise<Resource[]> => {
   const res = await fetch(`${API_BASE_URL}/resources`);
@@ -8,12 +9,14 @@ export const fetchResources = async (): Promise<Resource[]> => {
   return resources;
 };
 
-export const searchResources = async (term: string): Promise<Resource[]> => {
+const searchResources = async (term: string): Promise<Resource[]> => {
   const params = new URLSearchParams({ term });
   const res = await fetch(`${API_BASE_URL}/resources/search?${params}`);
   const resources: Resource[] = await res.json();
   return resources;
 };
+
+export const debouncedSearchResources = debounce(searchResources, 400);
 
 export const createResourceFromFile = async (file: File) => {
   validateFileForResource(file);
