@@ -2,35 +2,33 @@
 
 ## Installation
 
-// All the instructions to run the APPlication
+// All the instructions to run the application
 
-### `yarn start`
+- Ensure you have Node 12+ installed.
+- Ensure you have Yarn 1.16+ installed.
+- Git clone this repo: `git clone <ssh-link>`
+- Navigate to the API directory and install the dependencies for the API: `yarn install`.
+- You can run the API using: `yarn dev`. The API is configured to run on localhost:3001.
+- Navigate to the APP directory and install the dependencies for the APP: `yarn install`.
+- Now run the APP: `yarn start`.
+- Open [http://localhost:3000](http://localhost:3000) to view the APP in the browser.
 
-Runs the APP in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Test
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- Run the tests: `yarn test`
 
-### `yarn test`
+This launches the test runner in the interactive watch mode.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-APP/docs/running-tests) for more information.
+### Build
 
-### `yarn build`
+- Build the app: `yarn build`
 
-Builds the APP for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your APP is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-APP/docs/deployment) for more information.
+This builds the APP for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
 
 ## Security
 
 // List security concerns:
-// - that have been addressed
+### That have been addressed
 
 - File input has image MIME types png and jpg specified to help prevent dangerous files being uploaded
 - File uploads are validated to ensure file size isn't enormous before sending to server
@@ -39,7 +37,7 @@ See the section about [deployment](https://facebook.github.io/create-react-APP/d
 - Content security policy lists localhost:3000 (APP) and localhost:3001 (API) as the valid script and content src to help prevent malicious content from other domains being downloaded/executed
 - CORS headers direct browser to allow localhost:3000 only
 
-// - that have _not_ been addressed
+### That have _not_ been addressed
 
 - API does not validate file type or file size
 - API does not sanitise user search term
@@ -52,34 +50,44 @@ See the section about [deployment](https://facebook.github.io/create-react-APP/d
 
 // What could be added to the APP / API?
 
-- Pagination for read requests
+- Pagination for read requests to improve performance when many documents exist
+- Enable the user to preview the uploaded file
+- Update the API so it doesn't expose image paths (currently be used as the `id` field)
 
 ## Libraries
 
 // What external libraries have you used and why?
 
-### nock
-
-A good testing util for mocking HTTP responses. Enables us to render the entire APP in our tests.
-
-### xss
-
-A popular module for sanitising user input.
+- Nock: a good testing util for mocking HTTP responses. Enables us to render the entire APP in our tests.
+- Xss: a popular module for sanitising user input.
 
 ## API
 
 // Any general observation about the API?
-// document each endpoint using the following template:
 
+```ts
+Resource: {
+    "id": string, // ID used to identify the image
+    "name": string, // name of the image
+    "size": number // size of the image in bytes
+}
 ```
 
+### GET /resources -> Resource[]
 
-### GET /resources
-// Description of the endpoint:
-// - what does the endpoint do?
-// - what does it return?
-// - does it accept specific parameters?
-```
+This endpoint returns all the resources (documents) that the user has uploaded. A JSON containing an array of type Resource is returned.
+
+### GET /resources/search?term={string} -> Resource[]
+
+This endpoint returns all the resources (documents) which match the search term string. The matching function is very crude and simply matches the filenames which include the search term. A JSON containing an array of type Resource is returned.
+
+### POST /resource -> OK
+
+This endpoint can be used to create a resource. This endpoint expects a multipart form with a "file" field of type File and a "name" field of type string. A new resource will be created using the attached file and name. A 200 status code is returned.
+
+### DELETE /resource/{id} -> OK
+
+This endpoint can be used to delete a resource. The ID of the resource must be specified in the path variable. The resource will be deleted and a 200 status code is returned.
 
 ---
 
