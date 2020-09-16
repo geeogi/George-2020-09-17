@@ -17,13 +17,10 @@ export const ControlsBar = (props: {
     const file = files && files.length === 1 && files[0];
 
     /**
-     * Reset DOM element value
+     * Reset DOM element value to enable uploading the same file twice
      */
     e.target.value = "";
 
-    /**
-     * Upload file
-     */
     if (!isUploading && file) {
       setIsUploading(true);
       try {

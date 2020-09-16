@@ -31,9 +31,6 @@ export const useResources = () => {
     await loadResources();
   };
 
-  /**
-   * Load resources on page load and whenever search term changes
-   */
   useEffect(() => {
     loadResources();
   }, [searchTerm]);
