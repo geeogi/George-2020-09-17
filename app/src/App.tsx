@@ -1,5 +1,5 @@
 import React from "react";
-import { ControlsBar } from "./components/ControlsBar";
+import { ControlsBar } from "./components/ResourcesControls";
 import { ResourcePreview } from "./components/ResourcePreview";
 import { ResourcesContainer } from "./components/ResourcesContainer";
 import { ResourcesOverview } from "./components/ResourcesOverview";

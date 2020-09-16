@@ -9,10 +9,21 @@ export const ControlsBar = (props: { onSearch: (newSearchTerm: string) => void; 
   const { onSearch, onUpload, searchTerm } = props;
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!isUploading && e.target.files && e.target.files.length === 1) {
+    const files = e.target.files;
+    const file = files && files.length === 1 && files[0];
+
+    /**
+     * Reset DOM element value
+     */
+    e.target.value = "";
+
+    /**
+     * Upload file
+     */
+    if (!isUploading && file) {
       setIsUploading(true);
       try {
-        await onUpload(e.target.files[0]);
+        await onUpload(file);
       } catch (e) {
         notifyError(e as Error);
       } finally {
