@@ -3,7 +3,7 @@ import { PERMISSABLE_FILE_TYPES_MIME } from "../config/constants";
 import { notifyError } from "../core/error";
 import { Spinner } from "./Spinner/Spinner";
 
-export const ControlsBar = (props: {
+export const ResourcesControls = (props: {
   onSearch: (newSearchTerm: string) => void;
   onUpload: (file: File) => Promise<void>;
   searchTerm?: string;

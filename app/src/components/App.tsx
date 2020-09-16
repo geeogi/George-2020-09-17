@@ -1,7 +1,7 @@
 import React from "react";
 import { ResourcePreview } from "./ResourcePreview/ResourcePreview";
 import { ResourcesContainer } from "./ResourcesContainer";
-import { ControlsBar } from "./ResourcesControls";
+import { ResourcesControls } from "./ResourcesControls";
 import { ResourcesOverview } from "./ResourcesOverview";
 import { Spinner } from "./Spinner/Spinner";
 import { useResources } from "../hooks/resources";
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <main>
-      <ControlsBar
+      <ResourcesControls
         searchTerm={searchTerm}
         onSearch={setSearchTerm}
         onUpload={addResource}
