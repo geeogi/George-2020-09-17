@@ -3,7 +3,7 @@ import { validateFileForResource } from "../core/validate";
 import { Resource } from "../model/resource";
 import debounce from "debounce-promise";
 
-export const fetchResources = async (): Promise<Resource[]> => {
+const fetchAllResources = async (): Promise<Resource[]> => {
   const res = await fetch(`${API_BASE_URL}/resources`);
   const resources: Resource[] = await res.json();
   return resources;
@@ -16,7 +16,13 @@ const searchResources = async (term: string): Promise<Resource[]> => {
   return resources;
 };
 
-export const debouncedSearchResources = debounce(searchResources, 400);
+export const debouncedLoadResources = debounce((term?: string) => {
+  if (term) {
+    return searchResources(term);
+  } else {
+    return fetchAllResources();
+  }
+}, 400);
 
 export const createResourceFromFile = async (file: File) => {
   validateFileForResource(file);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createResourceFromFile, debouncedSearchResources, deleteResourceById, fetchResources } from "../handlers/resource";
+import { createResourceFromFile, debouncedLoadResources, deleteResourceById } from "../handlers/resource";
 import { Resource } from "../model/resource";
 
 export const useResources = () => {
@@ -8,17 +8,12 @@ export const useResources = () => {
   const [isSearching, setIsSearching] = useState(false);
 
   const loadResources = async () => {
-    if (searchTerm) {
-      setIsSearching(true);
-      try {
-        const searchedResources = await debouncedSearchResources(searchTerm);
-        setResources(searchedResources);
-      } finally {
-        setIsSearching(false);
-      }
-    } else {
-      const allResources = await fetchResources();
-      setResources(allResources);
+    setIsSearching(true);
+    try {
+      const newResources = await debouncedLoadResources(searchTerm);
+      setResources(newResources);
+    } finally {
+      setIsSearching(false);
     }
   };
 
@@ -32,6 +27,9 @@ export const useResources = () => {
     await loadResources();
   };
 
+  /**
+   * Load resources on page load and whenever search term changes
+   */
   useEffect(() => {
     loadResources();
   }, [searchTerm]);
