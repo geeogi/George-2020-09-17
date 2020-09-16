@@ -8,7 +8,7 @@ export const ResourcePreview = (props: { resource: Resource; onDelete: () => voi
   const sizeKb = round(bytesToKilobytes(resource.size));
 
   return (
-    <div className="border my-8 document-width">
+    <div className="border ma-8 resource-preview-width">
       <div className="pa-16">
         <h3>{resource.name}</h3>
         <div className="flex space-between center">

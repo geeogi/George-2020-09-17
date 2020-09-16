@@ -18,7 +18,7 @@ code {
 main {
   max-width: 960px;
   margin: auto;
-  padding: 2 * $double-spacer $double-spacer $double-spacer $double-spacer;
+  padding-top: 2 * $double-spacer;
 }
 
 button {
@@ -93,8 +93,8 @@ input {
   align-items: center;
 }
 
-.my-8 {
-  margin: $spacer 0px;
+.ma-8 {
+  margin: $spacer;
 }
 
 .pa-16 {
@@ -110,12 +110,12 @@ input {
 }
 
 // Component specific
-.document-width {
-  width: 300px;
+.resource-preview-width {
+  width: 302px;
 }
 
 @media only screen and (max-width: 960px) {
-  .document-width {
+  .resource-preview-width {
     width: 100%;
   }
 }

@@ -10,7 +10,11 @@ function App() {
   const { resources, deleteResource, searchTerm, setSearchTerm, addResource } = useResources();
 
   if (!resources) {
-    return <div>Loading...</div>;
+    return (
+      <main>
+        <div>Loading...</div>
+      </main>
+    );
   }
 
   const numberOfDocuments = resources.length;

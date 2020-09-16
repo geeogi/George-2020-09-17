@@ -1,5 +1,5 @@
 import React from "react";
 
 export const ResourcesContainer = (props: { children: React.ReactNode }) => {
-  return <div className="flex wrap space-between">{props.children}</div>;
+  return <div className="flex wrap">{props.children}</div>;
 };
