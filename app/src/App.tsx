@@ -7,7 +7,7 @@ import { bytesToKilobytes, round } from "./core/util";
 import { useResources } from "./hooks/resources";
 
 function App() {
-  const { resources } = useResources();
+  const { resources, deleteResource, searchTerm, setSearchTerm, createResourceFromFile } = useResources();
 
   if (!resources) {
     return <div>Loading...</div>;
@@ -19,11 +19,11 @@ function App() {
 
   return (
     <main>
-      <ControlsBar />
+      <ControlsBar searchTerm={searchTerm} onSearch={setSearchTerm} onUpload={createResourceFromFile} />
       <ResourcesOverview numberOfDocuments={numberOfDocuments} totalSizeKb={totalSizeKb} />
       <ResourcesContainer>
         {resources.map((resource) => (
-          <ResourcePreview resource={resource} />
+          <ResourcePreview resource={resource} onDelete={() => deleteResource(resource)} />
         ))}
       </ResourcesContainer>
     </main>

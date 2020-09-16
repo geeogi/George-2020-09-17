@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteResourceById, fetchResources, searchResources } from "../handlers/resource";
+import { createResourceFromFile, deleteResourceById, fetchResources, searchResources } from "../handlers/resource";
 import { Resource } from "../model/resource";
 
 export const useResources = () => {
@@ -24,5 +24,5 @@ export const useResources = () => {
     setResources(updatedResourceList);
   };
 
-  return { resources, deleteResource, setSearchTerm };
+  return { resources, deleteResource, searchTerm, setSearchTerm, createResourceFromFile };
 };
