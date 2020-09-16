@@ -62,6 +62,7 @@ export const deleteResourceById = async (id: string) => {
     const res = await fetch(`${API_BASE_URL}/resource/${id}`, {
       method: "DELETE",
     });
+    
     if (!res.ok) {
       throw new Error(res.status.toString());
     }

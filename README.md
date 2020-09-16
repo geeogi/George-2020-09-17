@@ -2,11 +2,11 @@
 
 ## Installation
 
-// All the instructions to run the application
+// All the instructions to run the APPlication
 
 ### `yarn start`
 
-Runs the app in the development mode.<br />
+Runs the APP in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
@@ -15,35 +15,56 @@ You will also see any lint errors in the console.
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+See the section about [running tests](https://facebook.github.io/create-react-APP/docs/running-tests) for more information.
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
+Builds the APP for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Your APP is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+See the section about [deployment](https://facebook.github.io/create-react-APP/docs/deployment) for more information.
 
 ## Security
 
 // List security concerns:
 // - that have been addressed
+
+- File input has image MIME types png and jpg specified to help prevent dangerous files being uploaded
+- File uploads are validated to ensure file size isn't enormous before sending to server
+- User search box input and file name are sanitised using XSS module to help prevent XSS
+- User input is not used in URL or template to help prevent XSS
+- Content security policy lists localhost:3000 (APP) and localhost:3001 (API) as the valid script and content src to help prevent malicious content from other domains being downloaded/executed
+- CORS headers direct browser to allow localhost:3000 only
+
 // - that have _not_ been addressed
+
+- API does not validate file type or file size
+- API does not sanitise user search term
+- HTTPS is not configured
+- CSP points to localhost, it should point to a dedicated domain
+- There is no rate limiting on the API, it could be overloaded easily
+- APP does not verify the content of API responses
 
 ## Improvements
 
-// What could be added to the app / API?
+// What could be added to the APP / API?
+
+- Pagination for read requests
 
 ## Libraries
 
 // What external libraries have you used and why?
 
-### debounce-promise
+### nock
 
-Used to debounce the search handler to prevent hammering the API and potentially showing results which are inconsistent with the search term.
+A good testing util for mocking HTTP responses. Enables us to render the entire APP in our tests.
+
+### xss
+
+A popular module for sanitising user input.
 
 ## API
 
