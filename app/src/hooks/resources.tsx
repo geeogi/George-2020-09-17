@@ -9,15 +9,15 @@ import { Resource } from "../model/resource";
 export const useResources = () => {
   const [resources, setResources] = useState<Resource[]>();
   const [searchTerm, setSearchTerm] = useState<string>();
-  const [isSearching, setIsSearching] = useState(false);
+  const [resourcesAreLoading, setResourcesAreLoading] = useState(false);
 
   const loadResources = async () => {
-    setIsSearching(true);
+    setResourcesAreLoading(true);
     try {
       const newResources = await debouncedLoadResources(searchTerm);
       setResources(newResources);
     } finally {
-      setIsSearching(false);
+      setResourcesAreLoading(false);
     }
   };
 
@@ -40,10 +40,12 @@ export const useResources = () => {
 
   return {
     resources,
+
+    addResource,
     deleteResource,
+
     searchTerm,
     setSearchTerm,
-    addResource,
-    isSearching,
+    resourcesAreLoading,
   };
 };

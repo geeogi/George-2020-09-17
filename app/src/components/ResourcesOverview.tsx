@@ -5,9 +5,9 @@ import { Spinner } from "./Spinner";
 
 export const ResourcesOverview = (props: {
   resources: Resource[];
-  isSearching: boolean;
+  resourcesAreLoading: boolean;
 }) => {
-  const { resources, isSearching } = props;
+  const { resources, resourcesAreLoading } = props;
 
   const numberOfDocuments = resources.length;
   const totalSizeB = resources.reduce((a, b) => a + b.size, 0);
@@ -17,7 +17,7 @@ export const ResourcesOverview = (props: {
     <div className="flex wrap-reverse space-between mt-16">
       <h2>
         {numberOfDocuments} documents{" "}
-        {isSearching && (
+        {resourcesAreLoading && (
           <span className="ma-8">
             <Spinner />
           </span>

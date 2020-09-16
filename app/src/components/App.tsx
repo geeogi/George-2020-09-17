@@ -13,7 +13,7 @@ function App() {
     searchTerm,
     setSearchTerm,
     addResource,
-    isSearching,
+    resourcesAreLoading,
   } = useResources();
 
   return (
@@ -25,7 +25,7 @@ function App() {
       />
       {resources ? (
         <>
-          <ResourcesOverview isSearching={isSearching} resources={resources} />
+          <ResourcesOverview resourcesAreLoading={resourcesAreLoading} resources={resources} />
           <ResourcesContainer>
             {resources.map((resource) => (
               <ResourcePreview
