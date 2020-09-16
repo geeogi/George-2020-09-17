@@ -1,9 +1,8 @@
-import debounce from "debounce-promise";
 import { API_BASE_URL } from "../config/constants";
 import { validateFileForResource } from "../core/validate";
 import { Resource } from "../model/resource";
 
-const fetchAllResources = async (): Promise<Resource[]> => {
+export const fetchAllResources = async (): Promise<Resource[]> => {
   const res = await fetch(`${API_BASE_URL}/resources`);
 
   if (res.ok) {
@@ -14,7 +13,7 @@ const fetchAllResources = async (): Promise<Resource[]> => {
   }
 };
 
-const searchResources = async (term: string): Promise<Resource[]> => {
+export const searchResources = async (term: string): Promise<Resource[]> => {
   const params = new URLSearchParams({ term });
   const res = await fetch(`${API_BASE_URL}/resources/search?${params}`);
 
@@ -25,14 +24,6 @@ const searchResources = async (term: string): Promise<Resource[]> => {
     throw new Error("Documents could not be searched. Try again.");
   }
 };
-
-export const debouncedLoadResources = debounce((term?: string) => {
-  if (term) {
-    return searchResources(term);
-  } else {
-    return fetchAllResources();
-  }
-}, 400);
 
 export const createResourceFromFile = async (file: File) => {
   validateFileForResource(file);

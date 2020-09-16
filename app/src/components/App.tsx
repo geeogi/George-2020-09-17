@@ -1,10 +1,9 @@
 import React from "react";
+import { useResources } from "../hooks/resources";
 import { ResourcePreview } from "./ResourcePreview/ResourcePreview";
 import { ResourcesContainer } from "./ResourcesContainer";
 import { ResourcesControls } from "./ResourcesControls";
 import { ResourcesOverview } from "./ResourcesOverview";
-import { Spinner } from "./Spinner/Spinner";
-import { useResources } from "../hooks/resources";
 
 function App() {
   const {

@@ -1,28 +1,37 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   createResourceFromFile,
-  debouncedLoadResources,
   deleteResourceById,
+  fetchAllResources,
+  searchResources,
 } from "../handlers/resource";
 import { Resource } from "../model/resource";
+import useDebounce from "./debounce";
 
 export const useResources = () => {
   const [resources, setResources] = useState<Resource[]>();
-  const [searchTerm, setSearchTerm] = useState<string>();
   const [resourcesAreLoading, setResourcesAreLoading] = useState(false);
+  const [searchTerm, debouncedSearchTerm, setSearchTerm] = useDebounce<string>(
+    500
+  );
 
-  const loadResources = async () => {
+  const loadResources = useCallback(async () => {
     setResourcesAreLoading(true);
     try {
-      const newResources = await debouncedLoadResources(searchTerm);
-      console.log("resolved");
-      setResources(newResources);
+      if (debouncedSearchTerm) {
+        const newResources = await searchResources(debouncedSearchTerm);
+        setResources(newResources);
+      } else {
+        const newResources = await fetchAllResources();
+        setResources(newResources);
+      }
     } catch (e) {
       alert(e);
+      setSearchTerm("");
     } finally {
       setResourcesAreLoading(false);
     }
-  };
+  }, [debouncedSearchTerm, setSearchTerm]);
 
   const deleteResource = async (resource: Resource) => {
     await deleteResourceById(resource.id);
@@ -36,7 +45,7 @@ export const useResources = () => {
 
   useEffect(() => {
     loadResources();
-  }, [searchTerm]);
+  }, [debouncedSearchTerm, loadResources]);
 
   return {
     resources,
