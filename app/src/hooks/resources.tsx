@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
-import { createResourceFromFile, deleteResourceById, fetchResources, debouncedSearchResources } from "../handlers/resource";
+import { createResourceFromFile, debouncedSearchResources, deleteResourceById, fetchResources } from "../handlers/resource";
 import { Resource } from "../model/resource";
 
 export const useResources = () => {
   const [resources, setResources] = useState<Resource[]>();
   const [searchTerm, setSearchTerm] = useState<string>();
+  const [isSearching, setIsSearching] = useState(false);
 
   const loadResources = async () => {
-    const freshResources = await fetchResources();
-    setResources(freshResources);
+    if (searchTerm) {
+      setIsSearching(true);
+      try {
+        const searchedResources = await debouncedSearchResources(searchTerm);
+        setResources(searchedResources);
+      } finally {
+        setIsSearching(false);
+      }
+    } else {
+      const allResources = await fetchResources();
+      setResources(allResources);
+    }
   };
 
   const deleteResource = async (resource: Resource) => {
@@ -22,18 +33,8 @@ export const useResources = () => {
   };
 
   useEffect(() => {
-    if (!resources) {
-      loadResources();
-    }
-  }, [resources]);
-
-  useEffect(() => {
-    if (searchTerm) {
-      debouncedSearchResources(searchTerm).then(setResources);
-    } else {
-      fetchResources().then(setResources);
-    }
+    loadResources();
   }, [searchTerm]);
 
-  return { resources, deleteResource, searchTerm, setSearchTerm, addResource };
+  return { resources, deleteResource, searchTerm, setSearchTerm, addResource, isSearching };
 };

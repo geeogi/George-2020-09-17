@@ -3,17 +3,16 @@ import { ControlsBar } from "./components/ControlsBar";
 import { ResourcePreview } from "./components/ResourcePreview";
 import { ResourcesContainer } from "./components/ResourcesContainer";
 import { ResourcesOverview } from "./components/ResourcesOverview";
-import { Spinner } from "./components/Spinner";
 import { bytesToKilobytes, round } from "./core/util";
 import { useResources } from "./hooks/resources";
 
 function App() {
-  const { resources, deleteResource, searchTerm, setSearchTerm, addResource } = useResources();
+  const { resources, deleteResource, searchTerm, setSearchTerm, addResource, isSearching } = useResources();
 
   if (!resources) {
     return (
       <main>
-        <Spinner />
+        <div>Loading...</div>
       </main>
     );
   }
@@ -25,7 +24,7 @@ function App() {
   return (
     <main>
       <ControlsBar searchTerm={searchTerm} onSearch={setSearchTerm} onUpload={addResource} />
-      <ResourcesOverview numberOfDocuments={numberOfDocuments} totalSizeKb={totalSizeKb} />
+      <ResourcesOverview isSearching={isSearching} numberOfDocuments={numberOfDocuments} totalSizeKb={totalSizeKb} />
       <ResourcesContainer>
         {resources.map((resource) => (
           <ResourcePreview key={resource.id} resource={resource} onDelete={() => deleteResource(resource)} />
