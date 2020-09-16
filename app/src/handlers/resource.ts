@@ -3,24 +3,33 @@ import { validateFileForResource } from "../core/validate";
 import { Resource } from "../model/resource";
 
 export const fetchAllResources = async (): Promise<Resource[]> => {
-  const res = await fetch(`${API_BASE_URL}/resources`);
+  try {
+    const res = await fetch(`${API_BASE_URL}/resources`);
 
-  if (res.ok) {
+    if (!res.ok) {
+      throw new Error(res.status.toString());
+    }
+
     const resources: Resource[] = await res.json();
     return resources;
-  } else {
+  } catch (e) {
     throw new Error("Documents could not be fetched. Try refreshing the page.");
   }
 };
 
 export const searchResources = async (term: string): Promise<Resource[]> => {
   const params = new URLSearchParams({ term });
-  const res = await fetch(`${API_BASE_URL}/resources/search?${params}`);
 
-  if (res.ok) {
+  try {
+    const res = await fetch(`${API_BASE_URL}/resources/search?${params}`);
+
+    if (!res.ok) {
+      throw new Error(res.status.toString());
+    }
+
     const resources: Resource[] = await res.json();
     return resources;
-  } else {
+  } catch (e) {
     throw new Error("Documents could not be searched. Try again.");
   }
 };
@@ -33,22 +42,29 @@ export const createResourceFromFile = async (file: File) => {
   formData.append("file", file);
   formData.append("name", file.name);
 
-  const res = await fetch(`${API_BASE_URL}/resource`, {
-    method: "POST",
-    body: formData,
-  });
+  try {
+    const res = await fetch(`${API_BASE_URL}/resource`, {
+      method: "POST",
+      body: formData,
+    });
 
-  if (!res.ok) {
-    throw new Error("An error when occurred creating resource.");
+    if (!res.ok) {
+      throw new Error(res.status.toString());
+    }
+  } catch (e) {
+    throw new Error("An error when occurred creating document.");
   }
 };
 
 export const deleteResourceById = async (id: string) => {
-  const res = await fetch(`${API_BASE_URL}/resource/${id}`, {
-    method: "DELETE",
-  });
-
-  if (!res.ok) {
-    throw new Error("An error when occurred deleting resource.");
+  try {
+    const res = await fetch(`${API_BASE_URL}/resource/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) {
+      throw new Error(res.status.toString());
+    }
+  } catch (e) {
+    throw new Error("An error when occurred deleting document.");
   }
 };

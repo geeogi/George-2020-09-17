@@ -12,7 +12,6 @@ const port = 3001;
 app.use((req, res, next) => {
   res.append("Access-Control-Allow-Origin", ["http://localhost:3000"]);
   res.append("Access-Control-Allow-Methods", "GET,POST,DELETE");
-  res.append("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 
