@@ -1,9 +1,9 @@
 import React from "react";
-import { ResourcePreview } from "./ResourcePreview";
+import { ResourcePreview } from "./ResourcePreview/ResourcePreview";
 import { ResourcesContainer } from "./ResourcesContainer";
 import { ControlsBar } from "./ResourcesControls";
 import { ResourcesOverview } from "./ResourcesOverview";
-import { Spinner } from "./Spinner";
+import { Spinner } from "./Spinner/Spinner";
 import { useResources } from "../hooks/resources";
 
 function App() {

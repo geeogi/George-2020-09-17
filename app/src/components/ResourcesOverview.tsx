@@ -1,7 +1,7 @@
 import React from "react";
 import { bytesToKilobytes, round } from "../core/util";
 import { Resource } from "../model/resource";
-import { Spinner } from "./Spinner";
+import { Spinner } from "./Spinner/Spinner";
 
 export const ResourcesOverview = (props: {
   resources: Resource[];

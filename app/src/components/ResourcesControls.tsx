@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { PERMISSABLE_FILE_TYPES_MIME } from "../config/constants";
 import { notifyError } from "../core/error";
-import { Spinner } from "./Spinner";
+import { Spinner } from "./Spinner/Spinner";
 
 export const ControlsBar = (props: {
   onSearch: (newSearchTerm: string) => void;

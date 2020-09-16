@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { notifyError } from "../core/error";
-import { bytesToKilobytes, round } from "../core/util";
-import { Resource } from "../model/resource";
-import { Spinner } from "./Spinner";
+import { notifyError } from "../../core/error";
+import { bytesToKilobytes, round } from "../../core/util";
+import { Resource } from "../../model/resource";
+import { Spinner } from "../Spinner/Spinner";
+import "./ResourcePreview.scss";
 
 export const ResourcePreview = (props: {
   resource: Resource;

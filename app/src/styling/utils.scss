@@ -1,0 +1,42 @@
+@import "./variables.scss";
+
+.flex {
+  display: flex;
+  align-items: flex-start;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.flex-end {
+  align-self: flex-end;
+}
+
+.center {
+  align-items: center;
+}
+
+.ma-8 {
+  margin: $spacer;
+}
+
+.pa-16 {
+  padding: $double-spacer;
+}
+
+.mt-16 {
+  margin-top: $double-spacer;
+}
+
+.border {
+  border: solid 1px $border-color;
+}
