@@ -3,6 +3,7 @@ import { ControlsBar } from "./components/ControlsBar";
 import { ResourcePreview } from "./components/ResourcePreview";
 import { ResourcesContainer } from "./components/ResourcesContainer";
 import { ResourcesOverview } from "./components/ResourcesOverview";
+import { Spinner } from "./components/Spinner";
 import { bytesToKilobytes, round } from "./core/util";
 import { useResources } from "./hooks/resources";
 
@@ -12,7 +13,7 @@ function App() {
   if (!resources) {
     return (
       <main>
-        <div>Loading...</div>
+        <Spinner />
       </main>
     );
   }
