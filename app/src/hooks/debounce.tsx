@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 
+/**
+ * Returns a debounced value which changes at most once per specified delay period
+ * @param delay 
+ * @param initialValue 
+ */
 export default function useDebounce<T>(
   delay: number,
   initialValue?: T

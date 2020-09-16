@@ -15,6 +15,19 @@ export const useResources = () => {
     500
   );
 
+  const addResource = async (file: File) => {
+    await createResourceFromFile(file);
+    await loadResources();
+  };
+
+  const deleteResource = async (resource: Resource) => {
+    await deleteResourceById(resource.id);
+    await loadResources();
+  };
+
+  /**
+   * Loads all resources or searches by debouncedSearchTerm if present
+   */
   const loadResources = useCallback(async () => {
     setResourcesAreLoading(true);
     try {
@@ -33,16 +46,9 @@ export const useResources = () => {
     }
   }, [debouncedSearchTerm, setSearchTerm]);
 
-  const deleteResource = async (resource: Resource) => {
-    await deleteResourceById(resource.id);
-    await loadResources();
-  };
-
-  const addResource = async (file: File) => {
-    await createResourceFromFile(file);
-    await loadResources();
-  };
-
+  /**
+   * Loads resources whenever debouncedSearchTerm changes
+   */
   useEffect(() => {
     loadResources();
   }, [debouncedSearchTerm, loadResources]);
