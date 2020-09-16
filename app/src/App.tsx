@@ -23,7 +23,7 @@ function App() {
       <ResourcesOverview numberOfDocuments={numberOfDocuments} totalSizeKb={totalSizeKb} />
       <ResourcesContainer>
         {resources.map((resource) => (
-          <ResourcePreview resource={resource} onDelete={() => deleteResource(resource)} />
+          <ResourcePreview key={resource.id} resource={resource} onDelete={() => deleteResource(resource)} />
         ))}
       </ResourcesContainer>
     </main>

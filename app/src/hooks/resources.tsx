@@ -7,14 +7,16 @@ export const useResources = () => {
   const [searchTerm, setSearchTerm] = useState<string>();
 
   useEffect(() => {
-    if (!resources || !searchTerm) {
+    if (!resources) {
       fetchResources().then(setResources);
     }
-  });
+  }, [resources]);
 
   useEffect(() => {
     if (searchTerm) {
       searchResources(searchTerm).then(setResources);
+    } else {
+      fetchResources().then(setResources);
     }
   }, [searchTerm]);
 
