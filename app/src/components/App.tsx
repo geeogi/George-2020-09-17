@@ -1,10 +1,10 @@
 import React from "react";
-import { ResourcePreview } from "./components/ResourcePreview";
-import { ResourcesContainer } from "./components/ResourcesContainer";
-import { ControlsBar } from "./components/ResourcesControls";
-import { ResourcesOverview } from "./components/ResourcesOverview";
-import { Spinner } from "./components/Spinner";
-import { useResources } from "./hooks/resources";
+import { ResourcePreview } from "./ResourcePreview";
+import { ResourcesContainer } from "./ResourcesContainer";
+import { ControlsBar } from "./ResourcesControls";
+import { ResourcesOverview } from "./ResourcesOverview";
+import { Spinner } from "./Spinner";
+import { useResources } from "../hooks/resources";
 
 function App() {
   const { resources, deleteResource, searchTerm, setSearchTerm, addResource, isSearching } = useResources();
