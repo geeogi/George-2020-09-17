@@ -6,9 +6,24 @@ export const useResources = () => {
   const [resources, setResources] = useState<Resource[]>();
   const [searchTerm, setSearchTerm] = useState<string>();
 
+  const loadResources = async () => {
+    const freshResources = await fetchResources();
+    setResources(freshResources);
+  };
+
+  const deleteResource = async (resource: Resource) => {
+    await deleteResourceById(resource.id);
+    await loadResources();
+  };
+
+  const addResource = async (file: File) => {
+    await createResourceFromFile(file);
+    await loadResources();
+  };
+
   useEffect(() => {
     if (!resources) {
-      fetchResources().then(setResources);
+      loadResources();
     }
   }, [resources]);
 
@@ -20,11 +35,5 @@ export const useResources = () => {
     }
   }, [searchTerm]);
 
-  const deleteResource = async (resource: Resource) => {
-    await deleteResourceById(resource.id);
-    const updatedResourceList = await fetchResources();
-    setResources(updatedResourceList);
-  };
-
-  return { resources, deleteResource, searchTerm, setSearchTerm, createResourceFromFile };
+  return { resources, deleteResource, searchTerm, setSearchTerm, addResource };
 };

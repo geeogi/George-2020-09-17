@@ -6,8 +6,17 @@ export const ControlsBar = (props: { onSearch: (newSearchTerm: string) => void; 
   return (
     <div className="flex wrap-reverse space-between">
       <input placeholder="Search documents..." value={searchTerm} onChange={(e) => onSearch(e.target.value)}></input>
-      <input type="file" id="file-input" accept={PERMISSABLE_FILE_TYPES_MIME.join(",")} />
-      <label htmlFor="file-input">UPLOAD</label>
+      <input
+        type="file"
+        id="resource-upload-file-input"
+        accept={PERMISSABLE_FILE_TYPES_MIME.join(",")}
+        onChange={(e) => {
+          if (e.target.files && e.target.files.length === 1) {
+            onUpload(e.target.files[0]);
+          }
+        }}
+      />
+      <label htmlFor="resource-upload-file-input">UPLOAD</label>
     </div>
   );
 };
