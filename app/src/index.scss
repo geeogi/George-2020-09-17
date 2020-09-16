@@ -26,8 +26,8 @@ main {
 
 button {
   border: solid 1px $border-color;
-  background-color: $accent-color;
   display: block;
+  background-color: $accent-color;
   min-height: 2 * $double-spacer;
   min-width: 6 * $double-spacer;
   text-align: center;
@@ -65,11 +65,11 @@ input[type="file"] {
 
   + label {
     width: 150px;
+    padding: $spacer;
     border: solid 1px $border-color;
     background-color: $accent-color;
     display: block;
     text-align: center;
-    padding: $spacer;
   }
 
   &:focus + label,
@@ -87,6 +87,7 @@ input[type="file"] {
 // Utils
 .flex {
   display: flex;
+  align-items: flex-start;
 }
 
 .wrap {
@@ -131,7 +132,7 @@ input[type="file"] {
     width: $spacer;
     height: $spacer;
     background-color: $border-color;
-    margin: 0 2px;
+    margin: 2px;
     border-radius: 50%;
     display: inline-block;
     animation: bounce-delay 1.4s infinite ease-in-out both;
