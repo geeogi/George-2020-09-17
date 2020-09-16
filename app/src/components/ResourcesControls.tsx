@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import xss from "xss";
 import { PERMISSABLE_FILE_TYPES_MIME } from "../config/constants";
 import { notifyError } from "../core/error";
 import { Spinner } from "./Spinner/Spinner";
@@ -39,7 +40,7 @@ export const ResourcesControls = (props: {
         type="text"
         placeholder="Search documents..."
         value={searchTerm || ""}
-        onChange={(e) => onSearch(e.target.value)}
+        onChange={(e) => onSearch(xss(e.target.value))}
       ></input>
       <input
         type="file"

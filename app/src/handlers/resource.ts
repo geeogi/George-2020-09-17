@@ -1,3 +1,4 @@
+import xss from "xss";
 import { API_BASE_URL } from "../config/constants";
 import { validateFileForResource } from "../core/validate";
 import { Resource } from "../model/resource";
@@ -40,7 +41,7 @@ export const createResourceFromFile = async (file: File) => {
   const formData = new FormData();
 
   formData.append("file", file);
-  formData.append("name", file.name);
+  formData.append("name", xss(file.name));
 
   try {
     const res = await fetch(`${API_BASE_URL}/resource`, {
