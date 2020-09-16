@@ -1,35 +1,31 @@
 import React from "react";
-import { ControlsBar } from "./components/ResourcesControls";
 import { ResourcePreview } from "./components/ResourcePreview";
 import { ResourcesContainer } from "./components/ResourcesContainer";
+import { ControlsBar } from "./components/ResourcesControls";
 import { ResourcesOverview } from "./components/ResourcesOverview";
-import { bytesToKilobytes, round } from "./core/util";
+import { Spinner } from "./components/Spinner";
 import { useResources } from "./hooks/resources";
 
 function App() {
   const { resources, deleteResource, searchTerm, setSearchTerm, addResource, isSearching } = useResources();
 
-  if (!resources) {
-    return (
-      <main>
-        <div>Loading...</div>
-      </main>
-    );
-  }
-
-  const numberOfDocuments = resources.length;
-  const totalSizeB = resources.reduce((a, b) => a + b.size, 0);
-  const totalSizeKb = round(bytesToKilobytes(totalSizeB));
-
   return (
     <main>
       <ControlsBar searchTerm={searchTerm} onSearch={setSearchTerm} onUpload={addResource} />
-      <ResourcesOverview isSearching={isSearching} numberOfDocuments={numberOfDocuments} totalSizeKb={totalSizeKb} />
-      <ResourcesContainer>
-        {resources.map((resource) => (
-          <ResourcePreview key={resource.id} resource={resource} onDelete={() => deleteResource(resource)} />
-        ))}
-      </ResourcesContainer>
+      {resources ? (
+        <>
+          <ResourcesOverview isSearching={isSearching} resources={resources} />
+          <ResourcesContainer>
+            {resources.map((resource) => (
+              <ResourcePreview key={resource.id} resource={resource} onDelete={() => deleteResource(resource)} />
+            ))}
+          </ResourcesContainer>
+        </>
+      ) : (
+        <div className="mt-16">
+          <Spinner />
+        </div>
+      )}
     </main>
   );
 }
