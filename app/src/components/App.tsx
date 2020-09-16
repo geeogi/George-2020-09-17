@@ -7,17 +7,32 @@ import { Spinner } from "./Spinner";
 import { useResources } from "../hooks/resources";
 
 function App() {
-  const { resources, deleteResource, searchTerm, setSearchTerm, addResource, isSearching } = useResources();
+  const {
+    resources,
+    deleteResource,
+    searchTerm,
+    setSearchTerm,
+    addResource,
+    isSearching,
+  } = useResources();
 
   return (
     <main>
-      <ControlsBar searchTerm={searchTerm} onSearch={setSearchTerm} onUpload={addResource} />
+      <ControlsBar
+        searchTerm={searchTerm}
+        onSearch={setSearchTerm}
+        onUpload={addResource}
+      />
       {resources ? (
         <>
           <ResourcesOverview isSearching={isSearching} resources={resources} />
           <ResourcesContainer>
             {resources.map((resource) => (
-              <ResourcePreview key={resource.id} resource={resource} onDelete={() => deleteResource(resource)} />
+              <ResourcePreview
+                key={resource.id}
+                resource={resource}
+                onDelete={() => deleteResource(resource)}
+              />
             ))}
           </ResourcesContainer>
         </>

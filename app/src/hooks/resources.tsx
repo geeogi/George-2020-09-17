@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
-import { createResourceFromFile, debouncedLoadResources, deleteResourceById } from "../handlers/resource";
+import {
+  createResourceFromFile,
+  debouncedLoadResources,
+  deleteResourceById,
+} from "../handlers/resource";
 import { Resource } from "../model/resource";
 
 export const useResources = () => {
@@ -34,5 +38,12 @@ export const useResources = () => {
     loadResources();
   }, [searchTerm]);
 
-  return { resources, deleteResource, searchTerm, setSearchTerm, addResource, isSearching };
+  return {
+    resources,
+    deleteResource,
+    searchTerm,
+    setSearchTerm,
+    addResource,
+    isSearching,
+  };
 };

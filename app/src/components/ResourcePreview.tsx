@@ -4,7 +4,10 @@ import { notifyError } from "../core/error";
 import { Resource } from "../model/resource";
 import { Spinner } from "./Spinner";
 
-export const ResourcePreview = (props: { resource: Resource; onDelete: () => Promise<void> }) => {
+export const ResourcePreview = (props: {
+  resource: Resource;
+  onDelete: () => Promise<void>;
+}) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const { resource, onDelete } = props;

@@ -1,4 +1,7 @@
-import { MAX_FILE_SIZE_MB, PERMISSABLE_FILE_TYPES_MIME } from "../config/constants";
+import {
+  MAX_FILE_SIZE_MB,
+  PERMISSABLE_FILE_TYPES_MIME,
+} from "../config/constants";
 import { bytesToMegabytes } from "./util";
 
 export const validateFileForResource = (file: File) => {

@@ -3,7 +3,10 @@ import { bytesToKilobytes, round } from "../core/util";
 import { Resource } from "../model/resource";
 import { Spinner } from "./Spinner";
 
-export const ResourcesOverview = (props: { resources: Resource[]; isSearching: boolean }) => {
+export const ResourcesOverview = (props: {
+  resources: Resource[];
+  isSearching: boolean;
+}) => {
   const { resources, isSearching } = props;
 
   const numberOfDocuments = resources.length;
