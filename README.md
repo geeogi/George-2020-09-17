@@ -70,7 +70,7 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 
 // Any general observation about the API?
 
-Resources (documents) are returned from the API with the following JSON structure: 
+Resources (documents) are returned from the API with the following JSON structure:
 
 ```ts
 Resource: {
