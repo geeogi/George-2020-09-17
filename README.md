@@ -82,7 +82,7 @@ Resource: {
 }
 ```
 
-The API can be used to create, delete, list and search resources. Only the metadata for a resource (name, id and size) is returned by the API. The image file associated with a resource is stored locally on the API server however there is currently no way to retrieve the image file itself via the API (the API is fake in many ways and is not production ready). 
+The HTTP REST API can be used to create, delete, list and search resources. Only the metadata for a resource (name, id and size) is returned by the API. The image file associated with a resource is stored locally on the API server however there is currently no way to retrieve the image file itself via the API (the API is fake in many ways and is not production ready). 
 
 ### GET /resources -> Resource[]
 
