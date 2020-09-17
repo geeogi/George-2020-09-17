@@ -9,10 +9,6 @@
   flex-wrap: wrap;
 }
 
-.wrap-reverse {
-  flex-wrap: wrap-reverse;
-}
-
 .space-between {
   justify-content: space-between;
 }
@@ -29,14 +25,31 @@
   margin: $spacer;
 }
 
+.mx-8 {
+  margin-left: $spacer;
+  margin-right: $spacer;
+}
+
 .pa-16 {
   padding: $double-spacer;
 }
 
-.mt-16 {
-  margin-top: $double-spacer;
+.mt-48 {
+  margin-top: 3 * $double-spacer;
 }
 
 .border {
   border: solid 1px $border-color;
+}
+
+@media only screen and (max-width: $breakpoint) {
+  .xs-column-reverse {
+    flex-direction: column-reverse;
+  }
+  .xs-column {
+    flex-direction: column;
+  }
+  .xs-mt-8 {
+    margin-top: $spacer;
+  }
 }

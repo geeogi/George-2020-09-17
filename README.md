@@ -28,6 +28,7 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 ## Security
 
 // List security concerns:
+
 ### That have been addressed
 
 - File input has image MIME types png and jpg specified to help prevent dangerous files being uploaded
@@ -51,8 +52,10 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 // What could be added to the APP / API?
 
 - Pagination for read requests to improve performance when many documents exist
-- Enable the user to preview the uploaded file
+- Enable the user to preview and rename the uploaded file
+- Abort pending search requests when re-searching
 - Update the API so it doesn't expose image paths (currently be used as the `id` field)
+- More extensive tests
 
 ## Libraries
 

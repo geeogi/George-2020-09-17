@@ -35,7 +35,7 @@ export const ResourcesControls = (props: {
   };
 
   return (
-    <div className="flex wrap-reverse space-between">
+    <div className="flex space-between xs-column-reverse mx-8">
       <input
         type="text"
         placeholder="Search documents..."

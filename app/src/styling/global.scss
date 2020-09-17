@@ -1,5 +1,9 @@
 @import "./variables.scss";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -15,7 +19,7 @@ code {
 }
 
 main {
-  max-width: 960px;
+  max-width: $breakpoint;
   margin: auto;
   padding-top: 2 * $double-spacer;
 }
@@ -41,12 +45,16 @@ button {
 
 input[type="text"] {
   height: 2 * $double-spacer;
-  width: #{"min(100%, 400px)"};
+  width: 400px;
   font-size: 1em;
   border: solid 1px $border-color;
   background-color: $muted-color;
   border-radius: 0;
   padding-left: $spacer;
+  margin-top: $spacer;
+  @media only screen and (max-width: $breakpoint) {
+    width: 100%;
+  }
 }
 
 input[type="file"] {
@@ -66,6 +74,9 @@ input[type="file"] {
     background-color: $accent-color;
     display: block;
     text-align: center;
+    @media only screen and (max-width: $breakpoint) {
+      width: 100%;
+    }
   }
 
   &:focus + label,
@@ -78,4 +89,9 @@ input[type="file"] {
     cursor: initial;
     background-color: $disabled-color;
   }
+}
+
+h2,
+p {
+  margin: 0;
 }

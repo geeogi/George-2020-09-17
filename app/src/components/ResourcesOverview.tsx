@@ -14,7 +14,7 @@ export const ResourcesOverview = (props: {
   const totalSizeKb = round(bytesToKilobytes(totalSizeB));
 
   return (
-    <div className="flex wrap-reverse space-between mt-16">
+    <div className="flex space-between mt-48 xs-mt-8 xs-column mx-8">
       <h2>
         {numberOfDocuments} documents{" "}
         {resourcesAreLoading && (

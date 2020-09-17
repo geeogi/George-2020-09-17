@@ -26,7 +26,7 @@ export const ResourcePreview = (props: {
   const sizeKb = round(bytesToKilobytes(resource.size));
 
   return (
-    <div className="border ma-8 resource-preview-width">
+    <div className="border ma-8 ResourcePreview">
       <div className="pa-16">
         <h3>{resource.name}</h3>
         <div className="flex space-between center">

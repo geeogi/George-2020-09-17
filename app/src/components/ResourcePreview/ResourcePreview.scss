@@ -1,11 +1,11 @@
 @import "../../styling/variables.scss";
 
-.resource-preview-width {
+.ResourcePreview {
   width: 302px;
 }
 
-@media only screen and (max-width: 960px) {
-  .resource-preview-width {
+@media only screen and (max-width: $breakpoint) {
+  .ResourcePreview {
     width: 100%;
   }
 }
