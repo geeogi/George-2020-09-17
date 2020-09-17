@@ -23,7 +23,7 @@ This launches the test runner in the interactive watch mode.
 
 - Build the app: `yarn build`
 
-This builds the APP for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
+This builds the APP for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes. You can serve it locally using `npx serve -p 3000 build/`. 
 
 ## Security
 
@@ -35,7 +35,7 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 - File uploads are validated to ensure file size isn't enormous before sending to server
 - User search box input and file name are sanitised using XSS module to help prevent XSS
 - User input is not used in URL or template to help prevent XSS
-- Content security policy lists localhost:3000 (APP) and localhost:3001 (API) as the valid script and content src to help prevent malicious content from other domains being downloaded/executed
+- Content security policy lists localhost:3000 (APP) and localhost:3001 (API) as the valid script and content src to help prevent malicious content from other domains being downloaded/executed. Webpack has been configured to avoid inline scripts during the build to enable this.
 - CORS headers direct browser to allow localhost:3000 only
 
 ### That have _not_ been addressed
@@ -44,6 +44,7 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 - API does not sanitise user search term
 - HTTPS is not configured
 - CSP points to localhost, it should point to a dedicated domain
+– Should configure webpack dev server to avoid inline styles so 'unsafe inline' can removed from style-src CSP
 - There is no rate limiting on the API, it could be overloaded easily
 - APP does not verify the content of API responses
 
@@ -55,8 +56,9 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 - Enable the user to preview and rename the uploaded file
 - Abort pending search requests when re-searching
 - Respond to different errors with different messaging (e.g. 500 vs no network connection)
-- Use GraphQL to prevent over fetching (e.g. fetching all resources after creation/deletion)
+- Use GraphQL to prevent over fetching (e.g. avoid re-fetching all resources after creation/deletion)
 - Update the API so it doesn't expose image paths (currently being used as the `id` field)
+- Give user the option to clear search 
 - More extensive tests
 
 ## Libraries
