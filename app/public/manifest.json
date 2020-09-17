@@ -1,0 +1,4 @@
+{
+  "content_security_policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; connect-src http://localhost:3000 ws://localhost:3000 http://localhost:3001",
+  "default_locale": "en"
+}
