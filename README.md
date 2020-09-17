@@ -44,7 +44,7 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 - API does not sanitise user search term
 - HTTPS is not configured
 - CSP points to localhost, it should point to a dedicated domain
-– Should configure webpack dev server to avoid inline styles so 'unsafe inline' can removed from style-src CSP
+- Should configure webpack dev server to avoid inline styles so 'unsafe inline' can removed from style-src CSP
 - There is no rate limiting on the API, it could be overloaded easily
 - APP does not verify the content of API responses
 
