@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 /**
- * Returns a debounced value which changes at most once per specified delay period
+ * Returns a setter and debounced value which changes after specified delay period
  * @param delay 
  * @param initialValue 
  */
