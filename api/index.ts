@@ -19,7 +19,7 @@ app.use((req, res, next) => {
  * Add fake latency
  */
 app.use((req, res, next) => {
-  setTimeout(next, 1000);
+  setTimeout(next, 500);
 });
 
 /**
