@@ -23,11 +23,6 @@ const MOCK_SEARCH_RESOURCES_TWO = [
   { id: "id-78", name: "Beige", size: 24500 },
 ];
 
-/**
- * These tests render the entire App
- * They mock the HTTP requests only
- */
-
 describe("Page load", () => {
   it("renders upload button, search bar and resources returned by API", async () => {
     /**
@@ -40,7 +35,7 @@ describe("Page load", () => {
     const { findByText, getByText, getByPlaceholderText } = render(<App />);
 
     /**
-     * Expect rendered template
+     * Assert rendered template
      */
     getByText("UPLOAD");
     getByPlaceholderText("Search documents...");
@@ -59,14 +54,14 @@ describe("Search bar", () => {
       .reply(200, MOCK_ALL_RESOURCES, MOCK_HEADERS);
   });
 
-  it("calls search endpoint and renders resources returned by search API", async () => {
+  it("calls search endpoint with search term and renders returned resources", async () => {
     /**
      * Two HTTP requests expected for two search inputs
      */
     nock(API_BASE_URL)
-      .get("/resources/search?term=one")
+      .get("/resources/search?term=apple")
       .reply(200, MOCK_SEARCH_RESOURCES_ONE, MOCK_HEADERS)
-      .get("/resources/search?term=two")
+      .get("/resources/search?term=orange")
       .reply(200, MOCK_SEARCH_RESOURCES_TWO, MOCK_HEADERS);
 
     const { findByText, getByPlaceholderText } = render(<App />);
@@ -77,7 +72,7 @@ describe("Search bar", () => {
      * Simulate first search
      */
     Simulate.change(searchInput, {
-      target: ({ value: "one" } as any) as EventTarget,
+      target: ({ value: "apple" } as any) as EventTarget,
     });
     for (let resource of MOCK_SEARCH_RESOURCES_ONE) {
       await findByText(resource.name);
@@ -88,7 +83,7 @@ describe("Search bar", () => {
      * Simulate second search
      */
     Simulate.change(searchInput, {
-      target: ({ value: "two" } as any) as EventTarget,
+      target: ({ value: "orange" } as any) as EventTarget,
     });
     for (let resource of MOCK_SEARCH_RESOURCES_TWO) {
       await findByText(resource.name);
@@ -101,7 +96,7 @@ describe("Search bar", () => {
      * One HTTP requests expected for search and another expected for the refresh
      */
     nock(API_BASE_URL)
-      .get("/resources/search?term=one")
+      .get("/resources/search?term=apple")
       .reply(200, MOCK_SEARCH_RESOURCES_ONE, MOCK_HEADERS)
       .get("/resources")
       .reply(200, MOCK_ALL_RESOURCES, MOCK_HEADERS);
@@ -114,7 +109,7 @@ describe("Search bar", () => {
      * Simulate search
      */
     Simulate.change(searchInput, {
-      target: ({ value: "one" } as any) as EventTarget,
+      target: ({ value: "apple" } as any) as EventTarget,
     });
     for (let resource of MOCK_SEARCH_RESOURCES_ONE) {
       await findByText(resource.name);
