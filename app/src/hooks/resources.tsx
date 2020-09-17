@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { notifyError } from "../core/error";
 import {
   createResourceFromFile,
   deleteResourceById,
@@ -39,7 +40,7 @@ export const useResources = () => {
         setResources(newResources);
       }
     } catch (e) {
-      alert(e);
+      notifyError(e);
       setSearchTerm("");
     } finally {
       setResourcesAreLoading(false);

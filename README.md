@@ -54,6 +54,7 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 - Pagination for read requests to improve performance when many documents exist
 - Enable the user to preview and rename the uploaded file
 - Abort pending search requests when re-searching
+- Respond to different errors with different messaging (e.g. 500 vs no network connection)
 - Update the API so it doesn't expose image paths (currently be used as the `id` field)
 - More extensive tests
 
@@ -68,6 +69,8 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 
 // Any general observation about the API?
 
+Resources (documents) are returned from the API with the following JSON structure: 
+
 ```ts
 Resource: {
     "id": string, // ID used to identify the image
@@ -78,15 +81,15 @@ Resource: {
 
 ### GET /resources -> Resource[]
 
-This endpoint returns all the resources (documents) that the user has uploaded. A JSON containing an array of type Resource is returned.
+This endpoint returns all the resources (documents). JSON containing an array of type Resource is returned.
 
 ### GET /resources/search?term={string} -> Resource[]
 
-This endpoint returns all the resources (documents) which match the search term string. The matching function is very crude and simply matches the filenames which include the search term. A JSON containing an array of type Resource is returned.
+This endpoint returns all the resources (documents) which match the search term string. The matching function is very crude and simply matches the filenames which include the search term. JSON containing an array of type Resource is returned.
 
 ### POST /resource -> OK
 
-This endpoint can be used to create a resource. This endpoint expects a multipart form with a "file" field of type File and a "name" field of type string. A new resource will be created using the attached file and name. A 200 status code is returned.
+This endpoint can be used to create a resource. This endpoint expects a multipart form with a "file" field containing an image file with MIME type png or jpg and a "name" field of type string. A new resource will be created using the file and name. A 200 status code is returned.
 
 ### DELETE /resource/{id} -> OK
 
