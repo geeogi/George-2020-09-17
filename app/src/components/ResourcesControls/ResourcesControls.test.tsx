@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import React from "react";
 import { Simulate } from "react-dom/test-utils";
-import { notifyError } from "../core/error";
+import { notifyError } from "../../core/error";
 import { ResourcesControls } from "./ResourcesControls";
 
 jest.mock("../core/error", () => ({

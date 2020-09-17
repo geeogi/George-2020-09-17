@@ -2,7 +2,7 @@ import React from "react";
 import { useResources } from "../hooks/resources";
 import { ResourcePreview } from "./ResourcePreview/ResourcePreview";
 import { ResourcesContainer } from "./ResourcesContainer";
-import { ResourcesControls } from "./ResourcesControls";
+import { ResourcesControls } from "./ResourcesControls/ResourcesControls";
 import { ResourcesOverview } from "./ResourcesOverview";
 
 function App() {
