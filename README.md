@@ -15,15 +15,14 @@
 
 ### Test
 
-- Run the tests: `yarn test`
-
-This launches the test runner in the interactive watch mode.
+- Enter the test runner: `yarn test`
+- Press `a` to run all the tests.
 
 ### Build
 
 - Build the app: `yarn build`
 
-This builds the APP for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes. You can serve it locally using `npx serve -p 3000 build/`. 
+This builds the APP for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes. You can serve it locally using `npx serve -p 3000 build/`.
 
 ## Security
 
@@ -58,7 +57,7 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 - Respond to different errors with different messaging (e.g. 500 vs no network connection)
 - Use GraphQL to prevent over fetching (e.g. avoid re-fetching all resources after creation/deletion)
 - Update the API so it doesn't expose image paths (currently being used as the `id` field)
-- Give user the option to clear search 
+- Give user the option to clear search
 - More extensive tests
 
 ## Libraries
