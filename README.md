@@ -55,7 +55,8 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 - Enable the user to preview and rename the uploaded file
 - Abort pending search requests when re-searching
 - Respond to different errors with different messaging (e.g. 500 vs no network connection)
-- Update the API so it doesn't expose image paths (currently be used as the `id` field)
+- Use GraphQL to prevent over fetching (e.g. fetching all resources after creation/deletion)
+- Update the API so it doesn't expose image paths (currently being used as the `id` field)
 - More extensive tests
 
 ## Libraries
