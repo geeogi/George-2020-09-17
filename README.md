@@ -8,9 +8,9 @@
 - Ensure you have Yarn 1.16+ installed.
 - Git clone this repo: `git clone <ssh-link>`
 - Navigate to the API directory and install the dependencies for the API: `yarn install`.
-- You can run the API using: `yarn dev`. The API is configured to run on localhost:3001.
+- Run the API: `yarn dev`. The API is configured to run on localhost:3001.
 - Navigate to the APP directory and install the dependencies for the APP: `yarn install`.
-- Now run the APP: `yarn start`.
+- Run the APP: `yarn start`.
 - Open [http://localhost:3000](http://localhost:3000) to view the APP in the browser.
 
 ### Test
@@ -52,11 +52,12 @@ This builds the APP for production to the `build` folder. It correctly bundles R
 // What could be added to the APP / API?
 
 - Pagination for read requests to improve performance when many documents exist
-- Enable the user to preview and rename the uploaded file
+- Enable the user to preview and rename the uploaded file and retrieve it from the API
 - Abort pending search requests when re-searching
 - Respond to different errors with different messaging (e.g. 500 vs no network connection)
 - Use GraphQL to prevent over fetching (e.g. avoid re-fetching all resources after creation/deletion)
 - Update the API so it doesn't expose image paths (currently being used as the `id` field)
+- Update the API to use a DB instead of writing files locally
 - Give user the option to clear search
 - More extensive tests
 
@@ -81,13 +82,15 @@ Resource: {
 }
 ```
 
+The API can be used to create, delete, list and search resources. Only the metadata for a resource (name, id and size) is returned by the API. The image file associated with a resource is stored locally on the API server however there is currently no way to retrieve the image file itself via the API (the API is fake in many ways and is not production ready). 
+
 ### GET /resources -> Resource[]
 
-This endpoint returns all the resources (documents). JSON containing an array of type Resource is returned.
+This endpoint returns all the resources. JSON containing an array of type Resource is returned.
 
 ### GET /resources/search?term={string} -> Resource[]
 
-This endpoint returns all the resources (documents) which match the search term string. The matching function is very crude and simply matches the filenames which include the search term. JSON containing an array of type Resource is returned.
+This endpoint returns all the resources which match the search term string. The matching function is very crude and simply matches the filenames which include the search term. JSON containing an array of type Resource is returned.
 
 ### POST /resource -> OK
 
